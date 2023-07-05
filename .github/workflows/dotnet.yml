@@ -22,8 +22,8 @@ jobs:
         dotnet-version: 7.x.x
     - name: Add nu-get source
       run: > 
-        dotnet nuget add source --username AlexBimlnk --password ${{ secrets.PACKAGES_GA_TOKEN }} 
-        --store-password-in-clear-text --name Deadalus "https://nuget.pkg.github.com/Deadalus/index.json"
+        dotnet nuget add source --username Deadalus --password ${{ secrets.PACKAGES_GA_TOKEN }} 
+        --store-password-in-clear-text --name Deadalus "https://nuget.pkg.github.com/DaedalusTeam/index.json"
     - name: Restore dependencies
       run: dotnet restore
     - name: Build
