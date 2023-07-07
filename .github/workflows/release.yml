@@ -56,9 +56,6 @@ jobs:
       REGISTRY: ghcr.io
       TAG: ${{needs.Create_Git_Tag.outputs.tag-version}}
       IMAGE_NAME: ${{ github.repository }}
-    permissions:
-      contents: read
-      packages: write
     steps:
       - name: Print tag version from Create_NuGet
         run: echo "$TAG"
