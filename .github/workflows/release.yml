@@ -78,9 +78,7 @@ jobs:
         uses: docker/metadata-action@v4
         with:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
-          tags: |
-            type=ref,event=tag
-            type=semver,pattern={{raw}}
+          tags: ${{ env.TAG }}
 
       - name: Build and push Docker image
         uses: docker/build-push-action@v4
@@ -91,5 +89,5 @@ jobs:
           build-args: |
             REGISTRY_USER=${{ github.actor }}
             REGISTRY_TOKEN=${{ secrets.PACKAGES_GA_TOKEN }}
-          tags: ${{ steps.meta.outputs.tags }}
+          tags: ${{ env.TAG }}
           labels: ${{ steps.meta.outputs.labels }}
