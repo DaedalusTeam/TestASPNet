@@ -83,8 +83,9 @@ jobs:
       - name: Build and push Docker image
         uses: docker/build-push-action@v4
         with:
-          context: ./WebAPI
+          context: .
           push: true
+          file: ./WebAPI/Dockerfile
           build-args: |
             REGISTRY_USER=${{ github.actor }}
             REGISTRY_TOKEN=${{ secrets.PACKAGES_GA_TOKEN }}
