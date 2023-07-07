@@ -17,10 +17,10 @@ RUN dotnet nuget add source --username  $REGISTRY_USER --password $REGISTRY_TOKE
 RUN dotnet restore "WebAPI/WebAPI.csproj"
 COPY . .
 WORKDIR "/src/WebAPI"
-RUN dotnet build "WebAPI.csproj" -c Release -o /app/build --no-restore
+RUN dotnet build "WebAPI.csproj" -c Release -o /app/build
 
 FROM build AS publish
-RUN dotnet publish "WebAPI.csproj" -c Release -o /app/publish /p:UseAppHost=false --no-build
+RUN dotnet publish "WebAPI.csproj" -c Release -o /app/publish /p:UseAppHost=false
 
 FROM base AS final
 WORKDIR /app
