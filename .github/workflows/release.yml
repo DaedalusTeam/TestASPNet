@@ -37,7 +37,7 @@ jobs:
       id: run_tag
       uses: K-Phoen/semver-release-action@master
       with:
-        release_branch: main
+        release_branch: master
         tag_format: "%major%.%minor%.%patch%"
       env:
         GITHUB_TOKEN: ${{ secrets.TOKEN_GA }}
