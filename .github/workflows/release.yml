@@ -82,6 +82,7 @@ jobs:
         with:
           context: .
           push: true
+          file: ./WebAPI/Dockerfile
           build-args: |
             REGISTRY_USER=${{ github.actor }}
             REGISTRY_TOKEN=${{ secrets.PACKAGES_GA_TOKEN }}
