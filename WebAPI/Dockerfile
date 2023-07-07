@@ -5,16 +5,21 @@ WORKDIR /app
 EXPOSE 80
 EXPOSE 443
 
-FROM mcr.microsoft.com/dotnet/sdk:7.0 AS publish
+FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
 WORKDIR /src
-COPY . .
 
 ARG REGISTRY_USER
 ARG REGISTRY_TOKEN
 
+COPY ["WebAPI/WebAPI.csproj", "WebAPI/"]
+COPY ["Logic/Logic.csproj", "Logic/"]
 RUN dotnet nuget add source --username  $REGISTRY_USER --password $REGISTRY_TOKEN --store-password-in-clear-text --name Deadalus "https://nuget.pkg.github.com/DaedalusTeam/index.json"
-RUN dotnet restore
+RUN dotnet restore "WebAPI/WebAPI.csproj"
+COPY . .
 WORKDIR "/src/WebAPI"
+RUN dotnet build "WebAPI.csproj" -c Release -o /app/build
+
+FROM build AS publish
 RUN dotnet publish "WebAPI.csproj" -c Release -o /app/publish /p:UseAppHost=false
 
 FROM base AS final
