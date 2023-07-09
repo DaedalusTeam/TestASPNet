@@ -10,6 +10,8 @@ builder.Services
     .AddSingleton<IWorker, Worker>()
     .AddSingleton<IHelloWorld, HelloWorld>()
     .AddHostedService<HostedService>()
+    .AddHealthChecks()
+    .Services
     .AddControllers();
 
 var app = builder.Build();
@@ -21,5 +23,7 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.MapHealthChecks("/hc");
 
 app.Run();
