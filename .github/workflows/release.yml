@@ -62,7 +62,7 @@ jobs:
       packages: write
 
     steps:
-      - name: Print tag version from Create_NuGet
+      - name: Print tag version from Create_Git_Tag
         run: echo "$TAG"
 
       - name: Checkout repository
