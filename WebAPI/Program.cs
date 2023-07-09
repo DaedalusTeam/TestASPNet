@@ -1,10 +1,28 @@
 using Library;
 using Logic;
+using Microsoft.EntityFrameworkCore;
+using Npgsql;
+using Serilog;
 using WebAPI;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+
+
+//var dataSourceBuilder = new NpgsqlDataSourceBuilder(
+//    builder.Configuration.GetConnectionString("DefaultConnection"));
+////dataSourceBuilder.MapEnum();
+
+//using var dataSource = dataSourceBuilder.Build();
+//builder.Services.AddDbContext<MyDbContext>(options =>
+//    options
+//        .UseNpgsql(dataSource)
+//        .EnableSensitiveDataLogging()
+//        .UseSnakeCaseNamingConvention());
+
+builder.Host.UseSerilog((ctx, cfg) => 
+    cfg.ReadFrom.Configuration(ctx.Configuration));
 
 builder.Services
     .AddSingleton<IWorker, Worker>()
