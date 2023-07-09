@@ -1,12 +1,14 @@
 **/.classpath
 **/.dockerignore
 **/.env
-**/.git
-**/.gitignore
+.git
+.github
+.gitattributes
+.gitignore
 **/.project
 **/.settings
 **/.toolstarget
-**/.vs
+.vs
 **/.vscode
 **/*.*proj.user
 **/*.dbmdl
