@@ -8,7 +8,7 @@ using Xunit;
 namespace Logic.Tests;
 public class DBIntegrationTestBase : IDisposable, IAsyncDisposable
 {
-    private const string CONNECTION = "Host=postgres;Port=5432;Username=postgres;Password=admin;";
+    private const string CONNECTION = "Host=localhost;Port=5432;Username=postgres;Password=admin;";
     private bool _disposed;
 
     protected readonly MyDbContext _myDbContext;
