@@ -78,15 +78,15 @@ jobs:
         id: meta
         uses: docker/metadata-action@v4
         with:
-          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
-          tags: ${{ env.TAG }}
+          images: ${{ env.IMAGE_NAME }}
+          tags: |
+            type=semver,pattern={{version}},value=${{ env.TAG }}
 
       - name: Build and push Docker image
         uses: docker/build-push-action@v4
         with:
           context: .
           push: true
-          file: ./WebAPI/Dockerfile
           build-args: |
             REGISTRY_USER=DaedalusTeam
             REGISTRY_TOKEN=${{ secrets.PACKAGES_GA_TOKEN }}
